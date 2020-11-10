@@ -13,6 +13,13 @@ interface BinaryOperatorInfo extends RegistryItem {
   operation: BinaryOperation;
 }
 
+function multiplyNotNull(a: number, b: number): number {
+  if (a == null || b == null) {
+    return NaN;
+  }
+  return a * b;
+}
+
 export const binaryOperators = new Registry<BinaryOperatorInfo>(() => {
   return [
     {
@@ -28,7 +35,7 @@ export const binaryOperators = new Registry<BinaryOperatorInfo>(() => {
     {
       id: BinaryOperationID.Multiply,
       name: 'Multiply',
-      operation: (a: number, b: number) => a * b,
+      operation: multiplyNotNull,
     },
     {
       id: BinaryOperationID.Divide,
